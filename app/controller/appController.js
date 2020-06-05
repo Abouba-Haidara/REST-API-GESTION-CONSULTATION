@@ -2,7 +2,7 @@
 // on inclut d'abord  le model
 var Medecin = require("../model/medecin.model.js");
 
-// Afficher toute  la liste de medecins dans la base de données k
+// Afficher toute la liste de medecins dans la base de données
 exports.list_all_medecins = function (req, res) {
   Medecin.getAllMedecins(function (err, medecin) {
     console.log("controller");
@@ -12,7 +12,7 @@ exports.list_all_medecins = function (req, res) {
   });
 };
 
-// Créer une nouvelle tâche
+// Créer une nouvelle medecin
 exports.create_a_medecin = function (req, res) {
   var new_medecin = new Medecin(req.body);
   //handles null error
@@ -29,7 +29,7 @@ exports.create_a_medecin = function (req, res) {
   }
 };
 
-// Chercher une tâche avec son id
+// Chercher un medecin avec son id
 exports.read_a_medecin = function (req, res) {
   Medecin.getMedecinById(req.params.medecinId, function (err, medecin) {
     if (err) res.send(err);
@@ -37,7 +37,7 @@ exports.read_a_medecin = function (req, res) {
   });
 };
 
-// mettre à jour les données d'une tâche
+// mettre à jour les données d'un medecin
 exports.update_a_medecin = function (req, res) {
   Medecin.updateById(req.params.taskId, new Medecin(req.body), function (err, medecin) {
     if (err) res.send(err);
@@ -45,7 +45,7 @@ exports.update_a_medecin = function (req, res) {
   });
 };
 
-// Supprimer une tâche
+// Supprimer un medecin
 exports.delete_a_medecin = function (req, res) {
   Medecin.remove(req.params.medecinkId, function (err, medecin) {
     if (err) res.send(err);
