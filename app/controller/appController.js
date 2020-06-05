@@ -16,7 +16,12 @@ exports.list_all_medecins = function (req, res) {
 exports.create_a_medecin = function (req, res) {
   var new_medecin = new Medecin(req.body);
   //handles null error
-  if (new_medecin.nom == "" || new_medecin.prenom == "" || new_medecin.telephone == "" || new_medecin.adresse == "") {
+  if (
+    new_medecin.nom == "" ||
+    new_medecin.prenom == "" ||
+    new_medecin.telephone == "" ||
+    new_medecin.adresse == ""
+  ) {
     res.status(400).send({
       error: true,
       message: "Please provide medecin/status"
@@ -39,7 +44,10 @@ exports.read_a_medecin = function (req, res) {
 
 // mettre à jour les données d'un medecin
 exports.update_a_medecin = function (req, res) {
-  Medecin.updateById(req.params.taskId, new Medecin(req.body), function (err, medecin) {
+  Medecin.updateById(req.params.taskId, new Medecin(req.body), function (
+    err,
+    medecin
+  ) {
     if (err) res.send(err);
     res.json(medecin);
   });
@@ -50,7 +58,7 @@ exports.delete_a_medecin = function (req, res) {
   Medecin.remove(req.params.medecinkId, function (err, medecin) {
     if (err) res.send(err);
     res.json({
-      message: "Task successfully deleted",
+      message: "medecin successfully deleted",
       me: medecin
     });
   });
